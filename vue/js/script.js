@@ -64,3 +64,6 @@ function initialize() {
 }
 
 /* FIN JEU */
+
+/*
+test*/
