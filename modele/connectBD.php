@@ -1,6 +1,6 @@
 <?php
 $hostname = "localhost";	//ou localhost
-$base= ".....";
+$base= "projet_map";
 $loginBD= "root";	//ou "root"
 $passBD="root";
 //$pdo = null;
