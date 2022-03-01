@@ -1,36 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>map</title>
-        <link rel="stylesheet" href="./vue/style/style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map</title>
 
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <link rel="stylesheet" href="style/style.css">
 
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
 
-        <script src="./vue/js/jquery.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
-        <script src="./vue/js/script.js" type="text/javascript"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 
-    </head>
-    <body>
 
-        <!-- Street view -->
-        <div id="street-view"></div>
+    <!--
+           <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    -->
 
-        <!-- Leaflet map -->
-        <div id="mapLeaflet" class="ui-widget-content"></div>
 
-        <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-        <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfINdBzgbfX09jGy7QxtoZELgIROgFIwQ&callback=initialize&v=weekly"
-                async
-        ></script>
-    </body>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+
+
+</head>
+<body>
+
+<!-- Street view -->
+<div id="street-view"></div>
+
+<!-- Leaflet map -->
+<div id="mapLeaflet" class="ui-widget-content">
+
+</div>
+<button id="guess" onclick="guess()">Guess</button>
+<!--
+<div id="test">
+    <form>
+        <label for="latitude">Latitude:</label>
+        <input id="latitude" type="text" />
+        <label for="longitude">Longitude:</label>
+        <input id="longitude" type="text" />
+    </form>
+</div>
+-->
+
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfINdBzgbfX09jGy7QxtoZELgIROgFIwQ&callback=initialize&v=weekly"
+        async
+></script>
+<script src="script/jquery.js" type="text/javascript"></script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+<script src="script/script.js" type="text/javascript"></script>
+</body>
 </html>
