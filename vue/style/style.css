@@ -9,14 +9,14 @@ body{
 #mapLeaflet {
     background-color:beige;
     overflow: hidden;
-    height: 30vh;
-    width: 30vw;
+    height: 40vh;
+    width: 40vw;
     position: absolute;
     bottom: 0.5em;
     left: 0.5em;
     border-radius: 2%;
     box-shadow: 0 0 13px 0 rgba(0,0,0,0.2);
-    z-index: 10;
+    z-index: 4;
     padding: 1em;
 }
 /*#mapLeaflet:hover{
@@ -24,20 +24,35 @@ body{
     width: 60vw;
 }*/
 
-/* test 3 */
-
-
 #street-view{
     width: 100vw;
     height: 100vh;
     position: absolute;
     overflow: hidden;
-    /* Google inverts the colours if you don't have any billing set up.
-    We can go around this by adding a counter invert filter on top of the street view */
+
     filter: invert(1);
     z-index: 0;
     background-color: darksalmon;
 }
+#guess{
+    position: absolute;
 
-
+    height: 30px;
+    width: 70px;
+    bottom: 1em;
+    left: 1em;
+    background-color: #1a79ca;
+    color: white;
+    border-radius: 10%;
+    box-shadow: 0 0 13px 0 rgba(0,0,0,0.2);
+    z-index: 6;
+}
+/*#test{
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    z-index: 20;
+}*/
 

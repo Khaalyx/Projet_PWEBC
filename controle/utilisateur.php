@@ -20,7 +20,7 @@ function ident () {
         
             if (verifIdent_bd($pseudo, $mdp, $profil)) { 
                 $_SESSION['profil'] = $profil;
-                require("vue/accueil.html");// a changer plus tard
+                require("vue/jeuStreetView.html");// a changer plus tard
             }
             else {
                 $msg = "Nom d'utilisateur ou mot de passe incorrect.";
