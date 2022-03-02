@@ -1,0 +1,54 @@
+.w3-border-red, .w3-hover-border-red:hover {
+    border-color: #79b3dd!important;
+}
+
+.w3-padding {
+    padding: 8px 16px!important;
+}
+
+.w3-bottombar {
+    border-bottom: 6px solid #ccc!important;
+}
+
+.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter {
+    float: left;
+    width: 100%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+div {
+    display: block;
+}
+
+a {
+    color: inherit;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+}
+
+.w3-row {
+    text-align: center;
+}
+
+html, body {
+    font-family: Verdana,sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}

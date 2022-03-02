@@ -3,7 +3,7 @@
 function verifIdent_bd($pseudo, $password, &$profil) {
     require('connectBD.php');
 
-    $sql='SELECT pseudo, mdp FROM UTILISATEURS WHERE pseudo = :pseudo AND mdp = :mdp';
+    $sql='SELECT * FROM UTILISATEURS WHERE pseudo = :pseudo AND mdp = :mdp';
     try {
         $cmd=$pdo->prepare($sql);
         $cmd->bindParam(':pseudo', $pseudo , PDO::PARAM_STR);
@@ -26,7 +26,8 @@ function verifIdent_bd($pseudo, $password, &$profil) {
         return false;
     }
     else{
-        $profil = array("Pseudo" => $res[0]['pseudo']);
+        $profil = array("Pseudo" => $res[0]['pseudo'], "Email" => $res[0]['email'],
+                    "NbParties" => $res[0]['nbParties'], "BestScore" => $res[0]['bestScore']);
         return true; 
     }
 
@@ -99,5 +100,101 @@ catch (PDOException $e) {
     }
 }
 
+function verifMdp($pseudo, $mdp) {
+    require('connectBD.php');
+
+    $sql='SELECT * FROM UTILISATEURS WHERE pseudo = :pseudo AND mdp = :mdp';
+    try {
+        $cmd=$pdo->prepare($sql);
+        $cmd->bindParam(':pseudo', $pseudo , PDO::PARAM_STR);
+        $cmd->bindParam(':mdp', $mdp, PDO::PARAM_STR);
+        $bool=$cmd->execute();
+
+        if ($bool) {
+            $res = $cmd->fetchAll(PDO::FETCH_ASSOC); //tableau d'enregistrements
+        }
+        else{
+            return false;
+        }
+    }
+    catch (PDOException $e) {
+            echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+            die(); // On arrête tout.
+    }
+    if(count($res) == 0) {
+        return false;
+    }
+    else{
+        return true; 
+    }
+
+}
+
+function verifPseudo($pseudo) {
+    require('connectBD.php');
+
+    $sql='SELECT * FROM UTILISATEURS WHERE pseudo = :pseudo';
+    try {
+        $cmd=$pdo->prepare($sql);
+        $cmd->bindParam(':pseudo', $pseudo , PDO::PARAM_STR);
+        $bool=$cmd->execute();
+
+        if ($bool) {
+            $res = $cmd->fetchAll(PDO::FETCH_ASSOC); //tableau d'enregistrements
+        }
+        else{
+            return false;
+        }
+    }
+    catch (PDOException $e) {
+            echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+            die(); // On arrête tout.
+    }
+    if(count($res) == 0) {
+        return true;
+    }
+    else{
+        return false; 
+    }
+
+}
+
+function updateMdpBD($pseudo, $mdp) {
+    require('./modele/connectBD.php');
+
+    $sql = 'UPDATE UTILISATEURS SET mdp=:mdp
+            WHERE pseudo=:pseudo';
+
+    try {
+        $cmd=$pdo->prepare($sql);
+        $cmd->bindParam(':mdp', $mdp, PDO::PARAM_STR);
+        $cmd->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+
+        $cmd->execute();
+
+    } catch (Exception $e) {
+        echo utf8_encode("Echec de insert : " . $e->getMessage() . "\n");
+        die(); // On arrête tout.
+    }
+}
+
+function updatePseudoBD($oldPseudo, $newPseudo) {
+    require('./modele/connectBD.php');
+
+    $sql = 'UPDATE UTILISATEURS SET pseudo=:newPseudo
+            WHERE pseudo=:oldPseudo';
+
+    try {
+        $cmd=$pdo->prepare($sql);
+        $cmd->bindParam(':newPseudo', $newPseudo, PDO::PARAM_STR);
+        $cmd->bindParam(':oldPseudo', $oldPseudo, PDO::PARAM_STR);
+
+        $cmd->execute();
+
+    } catch (Exception $e) {
+        echo utf8_encode("Echec de insert : " . $e->getMessage() . "\n");
+        die(); // On arrête tout.
+    }
+}
 
 ?>
