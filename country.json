@@ -1,14 +1,54 @@
 [
   {
+    "name": "Algeria",
+    "code": "DZ"
+  },
+  {
+    "name": "Chile",
+    "code": "CL"
+  },
+  {
     "name": "France",
     "code": "FR"
+  },
+  {
+    "name": "Guatemala",
+    "code": "GT"
+  },
+  {
+    "name": "Israel",
+    "code": "IL"
+  },
+  {
+    "name": "Kuwait",
+    "code": "KW"
   },
   {
     "name": "Luxembourg",
     "code": "LU"
   },
   {
+    "name": "Mexico",
+    "code": "MX"
+  },
+  {
+    "name": "Monaco",
+    "code": "MC"
+  },
+  {
+    "name": "Paraguay",
+    "code": "PY"
+  },
+  {
+    "name": "Philippines",
+    "code": "PH"
+  },
+  {
     "name": "Portugal",
     "code": "PT"
+  },
+  {
+    "name": "Singapore",
+    "code": "SG"
   }
 ]

@@ -8,6 +8,7 @@ let countryStreetView;
 let countryCodeSV;
 
 
+let map;
 $(function (){
 
     var map = L.map("mapLeaflet").setView([51.505, -0.09], 5);
@@ -28,6 +29,11 @@ $(function (){
     map.setMaxBounds(bounds);
     map.on('drag', function() {
         map.panInsideBounds(bounds, { animate: false });
+    });
+    var markIcon = L.icon({
+        iconUrl: 'markerMan.png',
+        iconSize:     [30, 35], // size of the icon
+        iconAnchor:   [15, 34], // point of the icon which will correspond to marker's location
     });
 
     //marker init in france
@@ -55,37 +61,16 @@ $(function (){
         }, 200);
 
     });
-
-
-    //$.getJSON("countryName.json", function(result) { //tester les 2 fichiers pour voir lequel fonctionne le plus
+});
+function getRandomCountry(){
     $.getJSON("country.json", function(result) {
-        //console.log(result.length);
         let rand=Math.floor(Math.random() * (result.length - 0 + 1) + 0);
-        //console.log(rand);
-        //console.log(result[2].country);
         countryStreetView=result[rand].name;
         countryCodeSV=result[rand].code;
         console.log('SV : '+ countryStreetView + ","+countryCodeSV);
-        //ajaxNominatimSearch(countryStreetView);
         ajaxCountry();
-        //par ajax avec nominatim en param country si success sinon avec q=..   tester avec les noms compliqué
-        //toujours passer par nominatim ? pour avoir les bon nom de pays qui correspondent ?
     });
-    /*
-     $.getJSON("countryLatLong.json", function(result) {
-         //console.log(result.length);
-         let rand=Math.floor(Math.random() * (result.length - 0 + 1) + 0);
-         //console.log(rand);
-         //console.log(result[2].country);
-         countryStreetView=result[rand].country;
-         countryCodeSV=result[rand].alpha2;
-         console.log('SV : '+ countryStreetView + ","+countryCodeSV);
-         ajaxCountry();
-         //par ajax avec nominatim en param country si success sinon avec q=..   tester avec les noms compliqué
-         //toujours passer par nominatim ? pour avoir les bon nom de pays qui correspondent ?
-     });*/
-});
-
+}
 function ajaxCountry(){
     /*latSV=;
     lngSV=;
@@ -131,6 +116,7 @@ function getCountry(country,countrySet){
 
 /*STREET VIEW*/
 function initialize() {
+    getRandomCountry();
     setTimeout(function () {
         const fenway = { lat: latSV, lng: lngSV};
         //console.log(fenway);
@@ -151,7 +137,7 @@ function initialize() {
             }
         );
         map.setStreetView(panorama);
-    }, 200);
+    }, 300);
 }
 
 /**
@@ -163,12 +149,39 @@ function guess(){
         console.log("marker : "+countryMarker+' : '+latMarker+','+lngMarker);
         console.log("SV : "+countryStreetView+' : '+latSV+','+lngSV);
         console.log(countryMarker+" / "+countryStreetView);
-        if (countryStreetView==countryMarker)
-            alert("YESS");
-        else
-            alert("NOOO");
+        var pinIcon = L.icon({
+            iconUrl: 'pin.png',
+            iconSize:     [30, 35], // size of the icon
+            iconAnchor:   [15, 34], // point of the icon which will correspond to marker's location
+        });
+
+        var polylinePoints = [
+            [latMarker, lngMarker],
+            [latSV, lngSV]
+        ];
+
+        L.marker([latSV,lngSV ],{icon:pinIcon}).addTo(map);
+        var polyline = L.polyline(polylinePoints,{color:"black",dashArray: "5,5"}).addTo(map);
+        if (countryStreetView==countryMarker) //rajouter une condition ici si on fait par round
+            if (confirm('Gagné ! Rejouer ?')) {
+                rejouer();
+            } else {
+                rejouer(); //a modifier
+            }
+        else {
+            if (confirm('Perdu ! Rejouer ?')) {
+                rejouer();
+            } else {
+                rejouer();//a modifier
+            }
+        }
     }, 200);
     //faire toute la partie rejouer, compter points, quitter le jeu, sauvegarder ...
 }
+
+function rejouer(){
+    location.reload(); //refresh page
+}
+
 
 /* FIN JEU */
