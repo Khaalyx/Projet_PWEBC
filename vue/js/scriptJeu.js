@@ -74,7 +74,8 @@ $(function (){
     */
 
 
-    $.getJSON("countryName.json", function(result) {
+    //$.getJSON("countryName.json", function(result) { //tester les 2 fichiers pour voir lequel fonctionne le plus
+    $.getJSON("countryNames.json", function(result) {
         //console.log(result.length);
         let rand=Math.floor(Math.random() * (result.length - 0 + 1) + 0);
         //console.log(rand);
