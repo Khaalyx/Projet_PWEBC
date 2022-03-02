@@ -57,25 +57,8 @@ $(function (){
     });
 
 
-    //init StreetView
-    //lat: 38.20551, lng: -1.39907
-    //47.6088442, -122.3370567
-    /*const coordinates = [
-        ["epicodus", 47.6088442, -122.3370567],
-        ["international District", 47.5993455, -122.3303012],
-        ["westlake", 47.6278669, -122.339465],
-        ["uw", 47.6569384, -122.3048254],
-        ["space needle", 47.6186148,  -122.3554563]
-    ];
-    "lat": "36.5748441",
-    "lon": "139.2394179",
-    latSV=51.5085;
-    lngSV=-0.1257;
-    */
-
-
     //$.getJSON("countryName.json", function(result) { //tester les 2 fichiers pour voir lequel fonctionne le plus
-    $.getJSON("countryNames.json", function(result) {
+    $.getJSON("country.json", function(result) {
         //console.log(result.length);
         let rand=Math.floor(Math.random() * (result.length - 0 + 1) + 0);
         //console.log(rand);
