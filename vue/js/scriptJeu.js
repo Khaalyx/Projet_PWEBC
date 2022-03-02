@@ -10,8 +10,7 @@ let countryCodeSV;
 
 let map;
 $(function (){
-
-    var map = L.map("mapLeaflet").setView([51.505, -0.09], 5);
+    map = L.map("mapLeaflet").setView([51.505, -0.09], 5);
     L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         minZoom:1,
@@ -37,7 +36,7 @@ $(function (){
     });
 
     //marker init in france
-    var marker = L.marker([48.85741471684478, 2.344281259441162],{draggable:true}).addTo(map);
+    var marker = L.marker([48.85741471684478, 2.344281259441162],{icon:markIcon,draggable:true}).addTo(map);
 
     $( "#mapLeaflet" ).resizable({handles: "ne, n, e" });
 
@@ -162,19 +161,21 @@ function guess(){
 
         L.marker([latSV,lngSV ],{icon:pinIcon}).addTo(map);
         var polyline = L.polyline(polylinePoints,{color:"black",dashArray: "5,5"}).addTo(map);
+        setTimeout(function () {
         if (countryStreetView==countryMarker) //rajouter une condition ici si on fait par round
             if (confirm('Gagné ! Rejouer ?')) {
                 rejouer();
             } else {
-                rejouer(); //a modifier
+                //rejouer(); //a modifier
             }
         else {
             if (confirm('Perdu ! Rejouer ?')) {
                 rejouer();
             } else {
-                rejouer();//a modifier
+                //rejouer();//a modifier
             }
         }
+        }, 200);
     }, 200);
     //faire toute la partie rejouer, compter points, quitter le jeu, sauvegarder ...
 }
