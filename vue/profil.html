@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./vue/style/home.css">
+  <link rel="stylesheet" href="./vue/style/accueil.css">
   <link rel="stylesheet" href="./vue/style/menu.css">
   <link rel="stylesheet" href="./vue/style/profil.css">
   <title>Profil</title>
@@ -40,11 +40,11 @@
       <div class="tab"><input id="tab-2" type="radio" name="tab-group-1" />
         <label for="tab-2">Paramètres</label>
         <div class="content">
-          <form action="" method="post">
+          <form action="index.php?controle=utilisateur&action=updatePseudo" method="post">
             <p for="pseudo">Entrez nouveau pseudo: <input name="pseudo" type="text"></p>
             <input type="submit" value="Modifier"> <br/> <br/>
           </form>
-          <form action="" method="post">
+          <form action="index.php?controle=utilisateur&action=updateMdp" method="post">
             <p for="oldMdp">Ancien mot de passe: <input name="oldMdp" type="password"></p>
             <p for="newMdp">Nouveau mot de passe: <input name="newMdp" type="password"></p>
             <p for="verifNewMdp">Confirmez nouveau mot de passe: <input name="verifNewMdp" type="password"></p>
