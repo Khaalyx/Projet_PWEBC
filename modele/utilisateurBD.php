@@ -198,7 +198,32 @@ function updatePseudoBD($oldPseudo, $newPseudo) {
 }
 
 function saveScore($score){
-    
+    require('./modele/connectBD.php');
+    $sql='SELECT bestScore FROM UTILISATEURS WHERE pseudo = :pseudo';
+    try {
+        $cmd=$pdo->prepare($sql);
+        $cmd->bindParam(':pseudo', $_SESSION['profil']['Pseudo'] , PDO::PARAM_STR);
+        $bool=$cmd->execute();
+
+        if ($bool) {
+            $res = $cmd->fetchAll(PDO::FETCH_ASSOC); //tableau d'enregistrements
+        }
+        else{
+            return false;
+        }
+    }
+    catch (PDOException $e) {
+            echo utf8_encode("Echec de select : " . $e->getMessage() . "\n");
+            die(); // On arrête tout.
+    }
+    if(count($res) == 0) {
+        return false;
+    }
+    else{
+        if($res["bestScore"] == null)
+        // pas fini
+        return; 
+    }
 }
 
 ?>
