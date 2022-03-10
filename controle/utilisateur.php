@@ -13,6 +13,15 @@ function profil() {
     require('./vue/profil.html');
 }
 
+
+function jouer(){
+    require('./vue/jeuStreetView.html');
+}
+
+function contact(){
+    require('./vue/contact.html');
+}
+
 function ident () {
     $pseudo=isset($_POST['pseudoLogin'])?($_POST['pseudoLogin']):'';
     $mdp=isset($_POST['mdpLogin'])?($_POST['mdpLogin']):'';

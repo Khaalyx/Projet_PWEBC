@@ -197,4 +197,8 @@ function updatePseudoBD($oldPseudo, $newPseudo) {
     }
 }
 
+function saveScore($score){
+    
+}
+
 ?>
