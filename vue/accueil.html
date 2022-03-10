@@ -2,58 +2,49 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./vue/style/styleAccueil.css"/>
-    <title>Acceuil</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./vue/style/home.css">
+    <link rel="stylesheet" href="./vue/style/menu.css">
+    <title>GuessUP</title>
+
+
 </head>
 <body>
-    <div class="center">
-        <button id="show-login">Démarrer</button>
-        <p class="msg"> <?php echo $msg; ?> </p>
+    <div class="bg">
+        <header>
+            <div id="mainbox" onclick="openFunction()">&#9776; GuessUP</div>
+            <div id="menu" class="sidemenu">
+                <a href="index.php?controle=utilisateur&action=accueil">Accueil</a>
+                <a href="index.php?controle=utilisateur&action=profil">Profil</a>
+                <a href="index.php?controle=jeu&action=jeuStreetView">Jeu</a>
+                <a href="#">Contact</a>
+                <a href="index.php?controle=utilisateur&action=deconnexion">Deconnexion</a>
+                <a href="#" class="closebtn" onclick="closeFunction()">&times;</a>
+            </div>
+        </header>
     </div>
-      <!--pop up login-->
-      <div class="popup_login">
-        <div class="close-btn">&times;</div>
-        <form action="index.php?controle=utilisateur&action=ident" method="post"  class="form">
-          <h2>Connexion</h2>
-          <div class="form-element">
-            <input type="text" name="pseudoLogin" placeholder="Pseudo" value="<?php echo $pseudo ?>">
-          </div>
-          <div class="form-element">
-            <input type="password" name="mdpLogin" placeholder="Mot de passe">
-          </div>
-          <div class="form-element">
-            <button>Se connecter</button>
-          </div>
-          <div class="form-element">
-            <a class="show-signup" href="#">Pas encore inscrit ?</a>
-          </div>
+
+    <div class="container">
+
+        <button>Règles</button>
+        <form action="index.php?controle=jeu&action=jeuStreetView"  method="post">
+            <button>Lancer</button>
         </form>
-      </div>
-      <!--pop up inscription-->
-      <div class="popup_signup">
-        <div class="close-btn">&times;</div>
-        <form action="index.php?controle=utilisateur&action=inscription" method="post" class="form">
-          <h2>Inscription</h2>
-          <div class="form-element">
-            <input type="text" name="pseudoSignup" placeholder="Pseudo">
-          </div>
-          <div class="form-element">
-            <input type="password" name="mdpSignup" placeholder="Mot de passe">
-          </div>
-          <div class="form-element">
-            <input type="password" name="verifMdp" placeholder="Vérification mot de passe">
-          </div>
-          <div class="form-element">
-            <input type="email" name="email" placeholder="Email">
-          </div>
-          <div class="form-element">
-            <button>S'inscrire</button>
-          </div>
-          <div class="form-element">
-            <a class="show-login" href="#">Déjà inscrit ?</a>
-          </div>
-        </form>
-      </div>
+    </div>
+    
+    <div id="dialog" class="dialog">
+        <div class="dialog-overlay"></div>
+        <div class="dialog-content">
+            <h1>Règles du jeu</h1>
+            <p>C'est un jeu de géographie où il s'agit de trouver le pays et notament la ville correspondant. Analysez autour de vous tous les indices grâce au street view. Puis, placez l'épingle sur la carte sur l'endroit correspondant. Votre score sera évalué en fonction de la distance trouvée.</p>
+            <button class="dialog-close">Close</button>
+        </div>
+    </div>
+
 </body>
-<script src="./vue/js/script.js"></script>
+
+<script src="./vue/js/menu.js" type="text/javascript"></script>
+<script src="./vue/js/dialog.js" type="text/javascript"></script>
+
 </html>
