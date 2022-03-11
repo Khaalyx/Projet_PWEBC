@@ -141,7 +141,9 @@ function initialize() {
 
 /**
  * Au clic sur le bouton guess :
+ * creer une variable cpt, boucle while >3 rejouer
  */
+
 function guess(){
     ajaxNominatimReverse(latSV,lngSV,"countryStreetView");
     setTimeout(function () {
