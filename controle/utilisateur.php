@@ -22,6 +22,12 @@ function contact(){
     require('./vue/contact.html');
 }
 
+function guess(){
+    require ("./modele/utilisateurBD.php");
+    incrementeNbPartie();
+    jouer();
+}
+
 function ident () {
     $pseudo=isset($_POST['pseudoLogin'])?($_POST['pseudoLogin']):'';
     $mdp=isset($_POST['mdpLogin'])?($_POST['mdpLogin']):'';

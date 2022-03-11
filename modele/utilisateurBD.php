@@ -226,4 +226,22 @@ function saveScore($score){
     }
 }
 
+function incrementeNbPartie() {
+    require('./modele/connectBD.php');
+    $sql = 'UPDATE UTILISATEURS SET nbPartie=:nbPartie
+            WHERE pseudo=:pseudo';
+
+    try {
+        $cmd=$pdo->prepare($sql);
+        $cmd->bindParam(':nbPartie', ++$_SESSION['profil']['NbParties'], PDO::PARAM_STR);
+        $cmd->bindParam(':pseudo', $_SESSION['profil']['Pseudo'], PDO::PARAM_STR);
+
+        $cmd->execute();
+
+    } catch (Exception $e) {
+        echo utf8_encode("Echec de insert : " . $e->getMessage() . "\n");
+        die(); // On arrête tout.
+    }
+}
+
 ?>
