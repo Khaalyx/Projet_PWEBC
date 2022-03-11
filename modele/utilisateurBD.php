@@ -231,11 +231,13 @@ function incrementeNbPartie() {
     $sql = 'UPDATE UTILISATEURS SET nbPartie=:nbPartie
             WHERE pseudo=:pseudo';
 
+    $nbPartie = $_SESSION['profil']['NbParties'] + 1;
+
     try {
         $cmd=$pdo->prepare($sql);
-        $cmd->bindParam(':nbPartie', ++$_SESSION['profil']['NbParties'], PDO::PARAM_STR);
+        $cmd->bindParam(':nbPartie', $nbPartie, PDO::PARAM_STR);
         $cmd->bindParam(':pseudo', $_SESSION['profil']['Pseudo'], PDO::PARAM_STR);
-
+        $_SESSION['profil']['NbParties'] = $nbPartie;
         $cmd->execute();
 
     } catch (Exception $e) {
