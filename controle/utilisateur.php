@@ -22,12 +22,6 @@ function contact(){
     require('./vue/contact.html');
 }
 
-function guess(){
-    require ("./modele/utilisateurBD.php");
-    incrementeNbPartie();
-    jouer();
-}
-
 function ident () {
     $pseudo=isset($_POST['pseudoLogin'])?($_POST['pseudoLogin']):'';
     $mdp=isset($_POST['mdpLogin'])?($_POST['mdpLogin']):'';
@@ -79,10 +73,9 @@ function inscription() {
                     require("vue/login.html");
                 }
                 else {
-                    inscrire($pseudo, $mdp, $email);
-                    $_SESSION['profil'] = array("pseudo"=>$pseudo);
-                    require("vue/accueil
-.html");
+                    inscrire($pseudo, $mdp, $email, $profil);
+                    $_SESSION['profil'] = $profil;
+                    require("vue/accueil.html");
                 }
             }
         }

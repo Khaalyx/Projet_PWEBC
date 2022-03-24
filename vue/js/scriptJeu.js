@@ -9,7 +9,7 @@ let countryCodeSV;
 
 
 let map;
-$(function (){
+$(function (){ /*//init map leaflet en bas a gauche*/
     map = L.map("mapLeaflet").setView([51.505, -0.09], 5);
     L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -45,11 +45,8 @@ $(function (){
         latMarker = marker.getLatLng().lat;
         lngMarker = marker.getLatLng().lng;
 
-        //appel à la fonction pour recuperer le pays du marker mais seulement quand on bouge le marker 2fois
-        // BIZARRE
         console.log('----------- avant : ');
 
-        //ajaxNominatimReverseMarker(latMarker,lngMarker);
         ajaxNominatimReverse(latMarker,lngMarker,"countryMarker");
         setTimeout(function () {
             console.log(latMarker + ", " + lngMarker);
@@ -58,9 +55,9 @@ $(function (){
             layer.openPopup();
             layer.closePopup();
         }, 200);
-
     });
 });
+//recuperer un pays au hasard
 function getRandomCountry(){
     $.getJSON("country.json", function(result) {
         let rand=Math.floor(Math.random() * (result.length - 0 + 1) + 0);
@@ -70,11 +67,9 @@ function getRandomCountry(){
         ajaxCountry();
     });
 }
+
+//requete ajax pour recuperer les coordonnée du pays
 function ajaxCountry(){
-    /*latSV=;
-    lngSV=;
-    countryStreetView=;
-    countryCodeSV=;*/
     $.ajax({
         type: "GET",
         url: "http://api.openweathermap.org/geo/1.0/direct?q="+countryStreetView+","+countryCodeSV+"&limit=1&appid=7c916eb4cc0f00b78c437bec9900786f",
@@ -95,7 +90,6 @@ function getCoord(lat,lng){
 function ajaxNominatimReverse(lat,lng,countrySet){
     $.ajax({
         type: "GET",
-        //http://api.openweathermap.org/geo/1.0/reverse?lat=51.5098&lon=-0.1180&limit=5&appid={API key}
         url: "https://nominatim.openstreetmap.org/reverse?format=json&lat="+lat+"&lon="+lng+"&limit=1&zoom=4&addressdetails=1",
         success:  function (result) {
             getCountry(result.address.country,countrySet);

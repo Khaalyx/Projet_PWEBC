@@ -34,7 +34,7 @@ function verifIdent_bd($pseudo, $password, &$profil) {
 }
 
 
-function inscrire($pseudo, $mdp, $email) {
+function inscrire($pseudo, $mdp, $email, &$profil) {
     require('./modele/connectBD.php');
 
     $sql = 'INSERT INTO UTILISATEURS (pseudo, mdp, email)
@@ -53,7 +53,7 @@ function inscrire($pseudo, $mdp, $email) {
         echo utf8_encode("Echec de insert : " . $e->getMessage() . "\n");
         die(); // On arrête tout.
     }
-
+    $profil = array("Pseudo" => $pseudo, "Email" => $email, "NbParties" => 0, "BestScore" => null);
 }
 
 /**
@@ -223,26 +223,6 @@ function saveScore($score){
         if($res["bestScore"] == null)
         // pas fini
         return; 
-    }
-}
-
-function incrementeNbPartie() {
-    require('./modele/connectBD.php');
-    $sql = 'UPDATE UTILISATEURS SET nbPartie=:nbPartie
-            WHERE pseudo=:pseudo';
-
-    $nbPartie = $_SESSION['profil']['NbParties'] + 1;
-
-    try {
-        $cmd=$pdo->prepare($sql);
-        $cmd->bindParam(':nbPartie', $nbPartie, PDO::PARAM_STR);
-        $cmd->bindParam(':pseudo', $_SESSION['profil']['Pseudo'], PDO::PARAM_STR);
-        $_SESSION['profil']['NbParties'] = $nbPartie;
-        $cmd->execute();
-
-    } catch (Exception $e) {
-        echo utf8_encode("Echec de insert : " . $e->getMessage() . "\n");
-        die(); // On arrête tout.
     }
 }
 
